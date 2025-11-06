@@ -2,14 +2,26 @@
   "version": 2,
   "functions": {
     "api/**/*.js": {
-      "maxDuration": 30
+      "maxDuration": 30,
+      "memory": 2048
     }
   },
   "build": {
     "env": {
-      "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD": "1"
+      "PUPPETEER_SKIP_CHROMIUM_DOWNLOAD": "1"
     }
   },
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "x-vercel-protection-bypass",
+          "value": "public"
+        }
+      ]
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",
